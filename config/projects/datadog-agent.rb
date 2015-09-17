@@ -158,11 +158,6 @@ if osx? or windows?
   dependency 'gui'
 end
 
-# Docker only exists on Linux
-if linux?
-  dependency 'docker-py'
-end
-
 # ------------------------------------
 # Dependencies
 # ------------------------------------
@@ -183,9 +178,12 @@ dependency 'tornado'
 dependency 'uptime'
 dependency 'uuid'
 
-# Check dependencies
+# Check dependencies (docker-py is required on Windows too because we import it in
+# dd-agent/utils/platform.py indirectly, since docker - and therefore - docker-py should
+# exist on Windows at some point, we're just anticipating on things anyway :) )
 dependency 'adodbapi'
 dependency 'dnspython'
+dependency 'docker-py'
 dependency 'httplib2'
 dependency 'kazoo'
 dependency 'paramiko'
